@@ -1,0 +1,45 @@
+Timestamp validation: results (n = 290 cases)
+======================================================================
+
+Table. Cases by surgical specialty
+  General                       145 (50.0)
+  Urology                        71 (24.5)
+  Gynecology                     36 (12.4)
+  Neurosurgery/Orthopedics       22 (7.6)
+  Dental/ENT/Plastics/Optho       8 (2.8)
+  >1 operating team               8 (2.8)
+
+Mean absolute error (MAE) against ground truth, seconds
+  entry: CV 26.8 vs manual 24.6
+  exit : CV 27.3 vs manual 23.0
+
+Within 1 minute of ground truth (Figure, A and B)
+  entry CV    : 273/290 (94%)
+  entry Manual: 269/290 (93%)
+  exit  CV    : 276/290 (95%)
+  exit  Manual: 262/290 (90%)
+
+Noninferiority of CV to manual entry (primary analysis)
+  (paired bootstrap: cases resampled with replacement, keeping each case's CV and manual errors together)
+  entry: MAE difference +2.2 s; 1-sided 95% upper bound +7.2 s (margin 30 s); supportive 1-sided Wilcoxon P < .001
+  exit : MAE difference +4.3 s; 1-sided 95% upper bound +8.2 s (margin 30 s); supportive 1-sided Wilcoxon P < .001
+
+Bias against ground truth, seconds (Bland-Altman; bias tested with a 1-sample Wilcoxon test)
+  entry CV    : bias +10.5 (rounded +11), P < .001; 95% limits of agreement -74.7 to +95.7
+  entry Manual: bias +9.0 (rounded +9), P < .001; 95% limits of agreement -94.8 to +112.7
+  exit  CV    : bias -5.5 (rounded -6), P = .010; 95% limits of agreement -87.0 to +75.9
+  exit  Manual: bias +2.3 (rounded +2), P = .89; 95% limits of agreement -67.6 to +72.1
+
+Trend of absolute error by hour of day (Spearman, hour of patient entry)
+  entry CV    : rho = 0.03, P = .66
+  entry Manual: rho = 0.02, P = .75
+  exit  CV    : rho = 0.00, P = .98
+  exit  Manual: rho = -0.03, P = .61
+
+Overnight subgroup at entry (n = 7): manual MAE 105.7 s vs CV 34.6 s
+  manual error overnight vs other shifts, Mann-Whitney P = .35
+
+Exit timing relative to each method's own entry timing (Discussion)
+  (exit error minus entry error per case; negative = exit marked earlier; Wilcoxon)
+  CV    : mean -16.1 s, P < .001
+  Manual: mean -6.7 s, P = .009
